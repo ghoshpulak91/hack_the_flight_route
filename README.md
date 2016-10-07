@@ -1,5 +1,7 @@
 # hack_the_flight_route
 
+This is simple ruby code to find minimum distance need to fly from one city to another using Dijkstra. 
+
 ------
 
 ## Language 
