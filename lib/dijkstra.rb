@@ -4,8 +4,12 @@ load_arr.each do |lib|
 	require File.expand_path(File.dirname(__FILE__)+"/"+lib)
 end
 
+# This is the implemetation of Dijkstra Algorithm to find minimum distance and shortest path
 class Dijkstra
-	
+
+	# @param [Integer] start_vertex 
+	# @param [Integer] end_vertex 
+	# @param [Array] edges an 2d array ex: [[1, 2, 10], [2, 4, 15], [1, 3, 20], [3, 4, 30], [2, 5, 50], [4, 5, 30]]
 	def initialize(start_vertex, end_vertex, edges)
 		@start_vertex	= start_vertex
 		@end_vertex 	= end_vertex
@@ -17,12 +21,20 @@ class Dijkstra
 		dijkstra
 	end
 	
+	# @retrun [Number]	
 	def get_minimum_distance
 		@r[@end_vertex]
 	end
+ 	
+	# @retrun [Array] retuns array of nodes 
+	def get_shortest_path
+		road(@end_vertex)
+		@path
+	end
 
-	def prepare(array)
-		n = array.size - 1
+	# @param [Array] edges an 2d array ex: [[1, 2, 10], [2, 4, 15], [1, 3, 20], [3, 4, 30], [2, 5, 50], [4, 5, 30]]
+	def prepare(edges)
+		n = edges.size - 1
 		@road = Hash.new(@vertices)
 		@r = Hash.new(@vertices)
 		@s = Hash.new(@vertices)
@@ -46,13 +58,14 @@ class Dijkstra
 			end
 		end
 		(1..n).each do |i|
-			x = array[i][0]
-			y = array[i][1]
-			c = array[i][2]
+			x = edges[i][0]
+			y = edges[i][1]
+			c = edges[i][2]
 			@road[[x, y]] = c
 		end
 	end
 	
+	# @param [Array] edges an 2d array ex: [[1, 2, 10], [2, 4, 15], [1, 3, 20], [3, 4, 30], [2, 5, 50], [4, 5, 30]]
 	def find_vertices(edges)
 		array = edges.collect{ |row| [row[0], row[1]] }
 		vertices = array.uniq.zip.flatten.compact.uniq

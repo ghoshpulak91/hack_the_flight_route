@@ -9,8 +9,15 @@ PI = 3.141592653589793.to_f
 
 RAD_PER_DEG = (PI/180).to_f
 
+
+# This is a module to find geodesic distance between two points on the Earth
 module GeodesicDistance
-	
+
+	# @param [Float] latitude1 latitude of first point
+	# @param [Float] longitude1 longitude of first point
+	# @param [Float] latitude2 latitude of 2nd point
+	# @param [Float] longitude2 longitude of 2nd point
+	# @return [Float] the geodesic distance in km
 	def self.find(latitude1, longitude1, latitude2, longitude2)
 		$log.info "point1: (#{latitude1}, #{longitude1}), point2: (#{latitude2}, #{longitude2})"	
 		dlon = longitude2 - longitude1  
