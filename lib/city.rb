@@ -4,6 +4,7 @@ load_arr.each do |lib|
 	require File.expand_path(File.dirname(__FILE__)+"/"+lib)
 end
 
+#This the base class for City 
 class City 
 	attr_reader :number, :name, :latitude, :longitude
 	
